@@ -1,0 +1,30 @@
+openapi: 3.0.0
+
+info:
+  title: Test api
+  version: v0.1
+
+servers:
+  - url: http://localhost:5000
+    description: Server
+
+paths:
+  /document:
+    get:
+      x-openapi-router-controller: test.entry
+      operationId: get_document
+      responses:
+        "200":
+          description: The requested document in PDF format
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+        "401":
+          description: Auth failure
+          content:
+            application/json:
+              schema:
+                type: object
+
